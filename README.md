@@ -11,7 +11,7 @@ A VS Code extension that plays a "fahh" sound whenever your code encounters an e
 ## Installation
 
 ### From VSIX (Easiest)
-1. Download the latest `.vsix` from the releases.
+1. Download the latest `.vsix` from the releases.('https://github.com/praneethreddie/fahh-sound-on-error/releases/tag/fahh')
 2. In VS Code, go to the Extensions view (`Ctrl+Shift+X`).
 3. Click the three dots `...` in the top right.
 4. Select **Install from VSIX...** and pick the file.
