@@ -1,7 +1,6 @@
 import * as vscode from 'vscode';
 import { exec } from 'child_process';
 
-let lastErrorCount = 0;
 
 const brainrotNames = [
     "Bombardiro Crocodillo",
@@ -62,28 +61,14 @@ export function activate(context: vscode.ExtensionContext) {
         speakName(getRandomName());
     });
 
-    // --- 1. Diagnostic Listener (Editor Errors) ---
-    const diagnosticListener = vscode.languages.onDidChangeDiagnostics((e: vscode.DiagnosticChangeEvent) => {
-        let currentErrorCount = 0;
-        e.uris.forEach((uri: vscode.Uri) => {
-            const diagnostics = vscode.languages.getDiagnostics(uri);
-            currentErrorCount += diagnostics.filter((d: vscode.Diagnostic) => d.severity === vscode.DiagnosticSeverity.Error).length;
-        });
-
-        if (currentErrorCount > lastErrorCount) {
-            speakName(getRandomName());
-        }
-        lastErrorCount = currentErrorCount;
-    });
-
-    // --- 2. Task Listener (Runtime Errors) ---
-    const taskListener = vscode.tasks.onDidEndTaskProcess((e: vscode.TaskProcessEndEvent) => {
+    // Fires when a terminal command finishes with a non-zero exit code
+    const terminalListener = vscode.window.onDidEndTerminalShellExecution((e) => {
         if (e.exitCode !== undefined && e.exitCode !== 0) {
             speakName(getRandomName());
         }
     });
 
-    context.subscriptions.push(testCommand, diagnosticListener, taskListener);
+    context.subscriptions.push(testCommand, terminalListener);
 }
 
 export function deactivate() { }
