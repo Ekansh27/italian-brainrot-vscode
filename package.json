@@ -2,7 +2,7 @@
   "name": "italian-brainrot-on-error",
   "displayName": "Italian Brainrot on Error",
   "description": "Speaks an Italian Brainrot character name out loud every time your code errors. Bombardiro Crocodillo has no mercy.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "EkanshArora",
   "license": "MIT",
   "homepage": "https://github.com/Ekansh27/italian-brainrot-vscode",
